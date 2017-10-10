@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+
+<div id = "box1">
+    <h1>Box 1</h1>
+    <button id = "goToBox2Btn">box2</button>
+    <button id = "goToBox3Btn">box3</button>
+</div>
+
+<div id = "box2" hidden>
+    <h1>Box 2</h1>
+    <button id = "goToBox1BtnFirst">box1</button>
+</div>
+
+<div id = "box3" hidden>
+    <h1>Box 3</h1>
+    <button id = "goToBox1BtnSecond">box1</button>
+</div>
+
+
+<script>
+    function elem(s){
+        return document.getElementById(s.toString());
+    }
+
+    function hideAllBoxes(){
+        elem("box1").hidden = true;
+        elem("box2").hidden = true;
+        elem("box3").hidden = true;
+    }
+
+    window.onload = function(){
+        const p = window.location.pathname;
+
+        if(p !== "/box1" && p !== "/box2" && p !== "/box3"){
+            hideAllBoxes();
+            elem("box1").hidden = false;
+            history.pushState({}, "", "/box1");
+        }
+
+        if(p === "/box1"){
+            hideAllBoxes();
+            elem("box1").hidden = false;
+        }
+
+        if(p === "/box2"){
+            hideAllBoxes();
+            elem("box2").hidden = false;
+        }
+
+        if(p === "/box3"){
+            hideAllBoxes();
+            elem("box3").hidden = false;
+        }
+
+
+
+
+        window.onpopstate = function(){
+            const p = window.location.pathname;
+
+            if(p !== "/box1" && p !== "/box2" && p !== "/box3"){
+                hideAllBoxes();
+                elem("box1").hidden = false;
+                history.pushState({}, "", "/box1");
+            }
+
+            if(p === "/box1"){
+                hideAllBoxes();
+                elem("box1").hidden = false;
+            }
+
+            if(p === "/box2"){
+                hideAllBoxes();
+                elem("box2").hidden = false;
+            }
+
+            if(p === "/box3"){
+                hideAllBoxes();
+                elem("box3").hidden = false;
+            }
+        };
+
+
+
+
+
+
+        elem("goToBox2Btn").onclick = function(){
+            hideAllBoxes();
+            elem("box2").hidden = false;
+            history.pushState({}, "", "/box2");
+        };
+
+        elem("goToBox3Btn").onclick = function(){
+            hideAllBoxes();
+            elem("box3").hidden = false;
+            history.pushState({}, "", "/box3");
+        };
+
+        elem("goToBox1BtnFirst").onclick = function(){
+            hideAllBoxes();
+            elem("box1").hidden = false;
+            history.pushState({}, "", "/box1");
+        };
+
+        elem("goToBox1BtnSecond").onclick = function(){
+            hideAllBoxes();
+            elem("box1").hidden = false;
+            history.pushState({}, "", "/box1");
+        }
+    }
+</script>
+
+</body>
+</html>
