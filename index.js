@@ -3,8 +3,9 @@
 let express = require("express");
 let app = express();
 
+app.use(express.static(__dirname + "/static"));
+
 app.get('/*', function(req, res) {
-    app.use(express.static(__dirname + "/static"));
     res.sendfile("static/index.html");
 });
 
